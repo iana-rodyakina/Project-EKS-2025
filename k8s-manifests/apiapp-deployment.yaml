@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apiapp-deployment
+  labels:
+    app: apiapp
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: apiapp
+  template:
+    metadata:
+      labels:
+        app: apiapp
+    spec:
+      containers:
+        - name: apiapp
+          image: ianarodyakina/apiapp:latest
+          ports:
+            - containerPort: 5000
