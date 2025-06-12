@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
         - name: webapp
-          image: ianarodyakina/webapp:latest
+          image: ianarodyakina/web-app:latest
           ports:
             - containerPort: 3000

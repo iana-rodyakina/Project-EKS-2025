@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
         - name: apiapp
-          image: ianarodyakina/apiapp:latest
+          image: ianarodyakina/api-app:latest
           ports:
             - containerPort: 5000
