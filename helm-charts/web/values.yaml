@@ -1,0 +1,23 @@
+replicaCount: 2
+
+image:
+  repository: ianarodyakina/web-app
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: LoadBalancer
+  port: 80
+  targetPort: 3000
+
+env:
+  ENVIRONMENT: production
+  API_URL: http://apiapp-service
+
+resources:
+  limits:
+    cpu: "200m"
+    memory: "512Mi"
+  requests:
+    cpu: "100m"
+    memory: "256Mi"

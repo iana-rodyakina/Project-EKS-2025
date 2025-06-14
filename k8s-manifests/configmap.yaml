@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: project-config
+data:
+  ENVIRONMENT: "production"
+  API_URL: "http://apiapp-service"

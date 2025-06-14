@@ -9,6 +9,11 @@ spec:
   selector:
     matchLabels:
       app: webapp
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
   template:
     metadata:
       labels:
@@ -19,3 +24,29 @@ spec:
           image: ianarodyakina/web-app:latest
           ports:
             - containerPort: 3000
+          envFrom:
+            - configMapRef:
+                name: project-config
+            - secretRef:
+                name: project-secret  
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+            initialDelaySeconds: 15
+            periodSeconds: 20
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "250m"
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
+
+        
